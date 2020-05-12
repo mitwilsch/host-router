@@ -14,6 +14,8 @@ bouncy(function(req, bounce) {
 
   if (domain === 'mitchell.schooler.me') {
     bounce(3001);
+  } else {
+    bounce(3001);
   }
 }).listen(port);
 
