@@ -4,7 +4,7 @@ const path = require('path');
 const bouncy = require('bouncy');
 
 const app = express();
-const port = process.env.PORT || 80;
+const port = process.env.PORT || 3000;
 
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
@@ -14,6 +14,7 @@ bouncy(function(req, bounce) {
 
   if (domain === 'mitchell.schooler.me') {
     bounce(3001);
+    console.log(`redirecting ${domain} to ${3001}`);
   } else {
     bounce(3001);
   }
