@@ -20,6 +20,9 @@ bouncy(function(req, bounce) {
     bounce(3001);
     console.log('redirecting localhost');
   }
+  if (domain === '35.212.252.95') {
+    bounce(3001);
+  }
 }).listen(port);
 
 // app.listen(port, () => console.log('Listening on port', port));
