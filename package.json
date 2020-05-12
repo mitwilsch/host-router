@@ -4,7 +4,8 @@
   "description": "",
   "main": "src/index.js",
   "scripts": {
-    "start": "nodemon --watch src src/server/index.js"
+    "start": "nodemon --watch src src/server/index.js",
+    "prod": "node src/server/index/js"
   },
   "dependencies": {
     "bouncy": "^3.2.2",
