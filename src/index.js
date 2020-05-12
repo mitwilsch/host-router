@@ -10,7 +10,9 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 
 bouncy(function(req, bounce) {
-  if (req.headers.host.split(':')[0] === 'mitchell.schooler.me') {
+  const domain = req.headers.host.split(':')[0];
+
+  if (domain === 'mitchell.schooler.me') {
     bounce(3001);
   }
 }).listen(port);
