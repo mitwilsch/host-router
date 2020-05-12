@@ -1,11 +1,11 @@
 #/usr/bin/env bash
-git clone https://git@github.com/mitwilsch/mitchell.schooler.me
-git clone https://git@github.com/mitwilsch/schooler.me
+git clone git@github.com:mitwilsch/mitchell.schooler.me
+git clone git@github.com:mitwilsch/schooler.me
 
-for f in *; do
-  cd $f
+for d in */; do
+  cd $d
   git pull
   npm i
   npm run build
+  cd ..
 done
-

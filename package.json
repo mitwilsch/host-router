@@ -5,7 +5,7 @@
   "main": "src/index.js",
   "scripts": {
     "start": "nodemon --watch src src/index.js",
-    "prod": "concurrently \"node src/index.js\" \"http-server public/mitchell.schooler.me/dist -p 3001\" "
+    "prod": "concurrently \"node src/index.js\" \"http-server public/mitchell.schooler.me/dist -p 3001\" \" http-server public/schooler.me/dist -p 3002\" "
   },
   "dependencies": {
     "bouncy": "^3.2.2",

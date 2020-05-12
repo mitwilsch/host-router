@@ -14,11 +14,9 @@ bouncy(function(req, bounce) {
 
   if (domain === 'mitchell.schooler.me') {
     bounce(3001);
-    console.log(`redirecting ${domain} to ${3001}`);
   }
-  if (domain === 'localhost') {
-    bounce(3001);
-    console.log('redirecting localhost');
+  if (domain === 'schooler.me') {
+    bounce(3002);
   }
   if (domain === '35.212.252.95') {
     bounce(3001);
