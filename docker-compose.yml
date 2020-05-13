@@ -1,0 +1,13 @@
+version: '3'
+
+services:
+  host-router:
+    build: .
+    image: mitwilsch/host-router
+    ports:
+      - '8080:80'
+
+  mitchell.schooler.me:
+    image: mitwilsch/mitchell.schooler.me
+    ports:
+      - '3001:3000'
