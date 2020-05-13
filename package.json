@@ -3,9 +3,10 @@
   "version": "0.0.1",
   "description": "host-router",
   "scripts": {
-    "build": "docker build -t mitwilsch/host-router:latest",
+    "build": "docker build -t mitwilsch/host-router:latest .",
     "composeUp": "docker-compose up",
-    "composeDown": "docker-compose down"
+    "composeDown": "docker-compose down",
+    "shell": "docker-compose exec host-router /bin/bash "
   },
   "devDependencies": {
     "@babel/core": "^7.9.6",

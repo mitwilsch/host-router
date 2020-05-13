@@ -1,7 +1,7 @@
 version: '3'
 
 services:
-  host-router:
+  main:
     build: .
     image: mitwilsch/host-router
     ports:
