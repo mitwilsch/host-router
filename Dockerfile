@@ -1,4 +1,3 @@
 FROM nginx:latest
-
-COPY ./repos ./repos
+WORKDIR /app
 COPY ./nginx/nginx.conf /etc/nginx/nginx.conf
