@@ -9,7 +9,7 @@ services:
       - ./nginx/error.log:/etc/nginx/error_log.log
       - ./nginx/cache/:/etc/nginx/cache
       - /etc/letsencrypt/:/etc/letsencrypt/
-      - ./repos:/App/repos/
+      - ./repos:/repos/
     ports:
       - 80:80
       - 443:443
