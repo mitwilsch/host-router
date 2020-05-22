@@ -13,18 +13,6 @@ services:
       - 80:80
       - 443:443
 
-  mitchell:
-    image: mitwilsch/mitchell.schooler.me:latest
-    container_name: mitchell
-    expose:
-      - '80'
-
-  schooler:
-    image: mitwilsch/schooler.me:latest
-    container_name: schooler
-    expose:
-      - '80'
-
   statMonitor:
     image: mitwilsch/stat-monitor:latest
     container_name: statMonitor
