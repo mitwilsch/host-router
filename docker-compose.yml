@@ -31,3 +31,9 @@ services:
     ports:
       - '80'
       - '8080'
+
+  toto:
+    image: mitwilsch/toto:latest
+    container_name: toto
+    expose:
+      - '80'
