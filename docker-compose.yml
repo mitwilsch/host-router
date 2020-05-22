@@ -24,3 +24,10 @@ services:
     container_name: schooler
     expose:
       - '80'
+
+  statMonitor:
+    image: mitwilsch/stat-monitor:latest
+    container_name: statMonitor
+    expose:
+      - '80'
+      - '8080'

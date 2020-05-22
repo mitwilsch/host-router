@@ -4,7 +4,8 @@
   "description": "host-router",
   "scripts": {
     "composeUp": "docker-compose up -d ",
-    "composeDown": "docker-compose down"
+    "composeDown": "docker-compose down",
+    "renewCerts": ""
   },
   "devDependencies": {
     "@babel/core": "^7.9.6",
