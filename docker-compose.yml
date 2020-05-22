@@ -2,10 +2,10 @@ version: '3'
 
 services:
   nginx:
-    image: nginx:latest
+    restart: always
+    image: mitwilsch/host-router:latest
     container_name: prod_nginx
     volumes:
-      - ./nginx/nginx.conf:/etc/nginx/nginx.conf
       - ./nginx/error.log:/etc/nginx/error_log.log
       - ./nginx/cache/:/etc/nginx/cache
       - /etc/letsencrypt/:/etc/letsencrypt/
@@ -31,9 +31,3 @@ services:
     ports:
       - '80'
       - '8080'
-
-        #toto:
-        #image: mitwilsch/toto:latest
-        #container_name: toto
-        #expose:
-        #- '80'

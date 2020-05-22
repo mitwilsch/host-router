@@ -5,7 +5,8 @@
   "scripts": {
     "composeUp": "docker-compose up -d ",
     "composeDown": "docker-compose down",
-    "renewCerts": ""
+    "renewCerts": "",
+    "dockerBuild": "docker build -t mitwilsch/host-router:latest ."
   },
   "devDependencies": {
     "@babel/core": "^7.9.6",
