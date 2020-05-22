@@ -286,3 +286,5 @@ npm ERR!     /root/.npm/_logs/2020-05-12T23_37_47_849Z-debug.log
 [0]     at readableAddChunk (_stream_readable.js:268:9)
 [0]     at Socket.Readable.push (_stream_readable.js:209:10)
 [0] node src/index.js exited with code 1
+[2]  http-server public/schooler.me/dist -p 3002 exited with code SIGTERM
+[1] http-server public/mitchell.schooler.me/dist -p 3001 exited with code SIGTERM
