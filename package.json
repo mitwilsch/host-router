@@ -3,7 +3,7 @@
   "version": "0.0.1",
   "description": "host-router",
   "scripts": {
-    "composeUp": "docker-compose up -d ",
+    "composeUp": "docker-compose up -d --force-recreate --remove-orphans",
     "composeDown": "docker-compose down",
     "renewCerts": "",
     "dockerBuild": "docker build -t mitwilsch/host-router:latest ."
