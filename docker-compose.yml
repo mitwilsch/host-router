@@ -7,7 +7,7 @@ services:
     container_name: nginx
     volumes:
       - ./nginx/${NGINX_CONF}:/etc/nginx/nginx.conf
-      - ./nginx/error.log:/etc/nginx/error_log.log
+
       - ./nginx/cache/:/etc/nginx/cache
       - /etc/letsencrypt/:/etc/letsencrypt/
       - '../mitchell.schooler.me/dist:/var/www/mitchell.schooler.me'
