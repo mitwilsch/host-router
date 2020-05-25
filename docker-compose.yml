@@ -17,5 +17,6 @@ services:
   statMonitor:
     image: mitwilsch/stat-monitor:latest
     container_name: statMonitor
-    expose:
+    ports:
+      - '80'
       - '8080'
