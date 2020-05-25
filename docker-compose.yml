@@ -2,14 +2,17 @@ version: '3'
 
 services:
   nginx:
+    image: nginx:latest
     restart: always
-    image: mitwilsch/host-router:latest
-    container_name: prod_nginx
+    container_name: nginx
     volumes:
-      - ./nginx/error.log:/etc/nginx/error_log.log
+      - ./nginx/${NGINX_CONF}:/etc/nginx/nginx.conf
+
       - ./nginx/cache/:/etc/nginx/cache
       - /etc/letsencrypt/:/etc/letsencrypt/
-      - ./repos:/repos/
+      - '../mitchell.schooler.me/dist:/var/www/mitchell.schooler.me'
+      - '../schooler.me/dist:/var/www/schooler.me'
+      - '../toto/dist:/var/www/toto'
     ports:
       - 80:80
       - 443:443

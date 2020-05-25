@@ -2,5 +2,6 @@
 package-lock.json
 node_modules
 nohup.out
-repos
+nginx/error.log
+.env
 

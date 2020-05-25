@@ -1,2 +1,6 @@
 FROM nginx:latest
-COPY ./nginx/nginx.conf /etc/nginx/nginx.conf
+WORKDIR /app
+ARG nginx_conf=nginx-prod.conf
+ENV nginx_conf 'nginx-prod.conf'
+
+COPY ./nginx/${nginx_conf} /etc/nginx/nginx.conf
