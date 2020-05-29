@@ -1,40 +1,116 @@
 # host-router
 
-Router for self-hosting React apps from a single project
+## Table of Contents
 
-# Layout
+- [About](#about)
+- [Getting Started](#getting_started)
+- [Usage](#usage)
 
-This project houses a docker-compose and config files
+## About <a name = "about"></a>
 
-Should run a Docker container, running nginx
-docker container loads configs
-Nginx configs route domain names to ports on localhost
+Router for self-hosting React apps from a single project.
 
-docker-compose bring up various images, serving by 3001,3002,...
+I made this project because I want to run multiple, small-ish webapps or React pages from one, low-cost server (such as the always-free configuration of Google Cloud VM), without having to maintain Nginx configs or setup an existing Nginx config on a new server. I also ran into performance issues running multiple Docker containers on such an environment, so mostly serving static files.
 
-nginx container runs on port 80 of server
-routes to docker container port depending on routing configs
+What's not covered here: any SSL configs. These are generated on the server itself, so Nginx will break if the SSL files don't exist.
 
-URLs on front-end should rewrite on backend, ie
-request to domain1/api/test => localhost:3001/api/test
+## Getting Started <a name = "getting_started"></a>
 
-# cert re-issue refs
+These instructions will get you a copy of the project up and running on your local machine for development and testing purposes.
 
-Automating Certificate Renewal
-The Let's Encrypt CA issues short-lived certificates, they are only valid for 90 days. This makes automating the renewal process important. Thankfully, certbot makes that easy with the command certbot renew. It checks all installed certificates, and renews the ones that will expire in less than 30 days.
+### Prerequisites
 
-It will use the same plugin for the renewal as was used when initially getting the certificate. In our case that is the standalone plugin.
+Router uses Docker, and the Nginx docker image.
+Make a folder for the apps:
 
-The challenge process is the same, so also for renewals the ports 80 or 443 must be free.
-certbot provides pre and post hooks, which we use to stop and start the webserver during the renewal, to free the ports.
-The hooks are executed only if a certificate needs to be renewed, so there is no unnecessary downtime of your services.
+Router serves from dist folders for React apps, and Docker containers for full-stack apps.
 
-Since we are using docker-compose, the whole command looks like this:
+```
+ls Apps/
+- host-router/
+  - this...
+- app1/
+  - dist/
+    - index.html
+    - bundle.js
+- app2/
+  - (Docker container build)
+```
 
-certbot renew --pre-hook "docker-compose -f path/to/docker-compose.yml down" --post-hook "docker-compose -f path/to/docker-compose.yml up -d"
-To complete the automation simply add the previous command as a cronjob.
-Open the cron file with crontab -e.
-In there add a new line with
+### Installing
 
-@daily certbot renew --pre-hook "docker-compose -f path/to/docker-compose.yml down" --post-hook "docker-compose -f path/to/docker-compose.yml up -d"
-That's it. Now the renew command is executed daily, and you won't have to worry about your certificates' expiration date.
+For each static host (React minified webpack dist), edit:
+
+nginx.conf
+
+```
+... server blocks...
+server {
+    server_name  <URL>;
+
+    location  / {
+      root <dist folder location>;
+      index index.html;
+      autoindex off;
+    }
+
+    listen 80;
+    ...ssl, cache, other configs, etc. ...
+ }
+```
+
+For each full-stack app, edit:
+
+docker-compose
+
+```
+projectName:
+    image: <docker image:latest>
+    ports: '8080'
+```
+
+and:
+
+nginx.conf
+
+```
+  server {
+    server_name  <URL>;
+
+     location  / {
+     root <dist folder>;
+     index index.html;
+     autoindex off;
+   }
+
+   location /api {
+     rewrite ^/api(.*) $1 break;
+     proxy_pass   <dockerContainerNetwork:PORT>;
+   }
+
+
+
+    listen 80;
+    ... ssl, caches, other configs, etc. ...
+  }
+```
+
+Run docker-compose to spin up
+
+Static files will be served by Nginx container
+
+Full-stack apps run in Docker containers
+
+## Usage <a name = "usage"></a>
+
+Nothing is needed to refresh static serves (they are hosted from the folder given in Nginx config, so as long as they are on the server they should refresh automatically)
+
+To refresh full-stack serves:
+
+```
+cd <project_dir>
+docker Build <imageName>
+
+cd <host-router>
+docker-compose up --force-recreate
+```
