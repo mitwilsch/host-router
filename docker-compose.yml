@@ -14,6 +14,7 @@ services:
       - '../schooler.me/dist:/var/www/schooler.me'
       - '../toto/dist:/var/www/toto'
       - '../stat-monitor/dist:/var/www/stat-monitor'
+      - '../pizza-locator/dist:/var/www/pizza-locator'
     ports:
       - 80:80
       - 443:443
@@ -21,5 +22,10 @@ services:
   statMonitor:
     image: mitwilsch/stat-monitor:latest
     container_name: statMonitor
+    ports:
+      - '8080'
+  pizzaLocator: 
+    image: mitwilsch/pizza-locator:latest
+    container_name: pizzaLocator
     ports:
       - '8080'
